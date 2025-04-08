@@ -9,7 +9,7 @@ visited = [[0] * n for _ in range(n)]
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
-def bfs(x, y, maps, village):
+def bfs(x, y):
 
     queue = deque()
     queue.append((x, y))
@@ -27,14 +27,12 @@ def bfs(x, y, maps, village):
                     visited[nx][ny] = village
                     queue.append((nx, ny))
     
-    return visited
-
 village = 1
 
 for i in range(n):
     for j in range(n):
         if maps[i][j] == 1 and visited[i][j] == 0:
-            bfs(i, j, maps, village)
+            bfs(i, j)
             village += 1
 
 village -= 1
