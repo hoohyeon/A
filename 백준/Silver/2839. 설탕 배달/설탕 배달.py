@@ -1,14 +1,15 @@
-sugar = int(input())
+n = int(input())
 
-a = sugar // 5
-b = -1
-for i in range(a, -1, -1):
-    if (sugar - 5 * i) % 3 == 0:
-        a = i
-        b = (sugar - 5 * i) // 3
-        break
+inf = 10e9
+dp = [inf] * (5000+1)
 
-if b != -1:
-    print(a+b)
+dp[3] = 1
+dp[5] = 1
+
+for i in range(6, n+1):
+    dp[i] = min(dp[i-3], dp[i-5]) + 1
+    
+if dp[n] < inf:
+    print(dp[n])
 else:
     print(-1)
