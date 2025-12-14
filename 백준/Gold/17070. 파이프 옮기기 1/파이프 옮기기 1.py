@@ -2,10 +2,12 @@ n = int(input())
 
 grid = [list(map(int, input().split())) for _ in range(n)]
 
+# dp[i][r][c] = i번째 모양(0 가로, 1 세로, 2 대각선)으로 끝을 grid[r][c]에 놓을 수 있는 파이프 개수
 dp = [[[0] * n for _ in range(n)] for _ in range(3)]
 
 dp[0][0][1] = 1
 for i in range(2, n):
+    # 초기 가로 파이프
     if grid[0][i] == 0:
         dp[0][0][i] = dp[0][0][i-1]
 
