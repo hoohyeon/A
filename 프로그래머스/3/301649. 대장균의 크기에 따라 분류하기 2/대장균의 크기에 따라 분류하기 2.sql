@@ -1,0 +1,18 @@
+SELECT
+    ID,
+    CASE
+        WHEN GRP = 1 THEN 'LOW'
+        WHEN GRP = 2 THEN 'MEDIUM'
+        WHEN GRP = 3 THEN 'HIGH'
+        WHEN GRP = 4 THEN 'CRITICAL'
+    END AS COLONY_NAME
+FROM (
+    SELECT
+        ID,
+        NTILE(4) OVER (ORDER BY SIZE_OF_COLONY) AS GRP, SIZE_OF_COLONY
+    FROM ECOLI_DATA
+) T
+ORDER BY ID;
+        
+
+
